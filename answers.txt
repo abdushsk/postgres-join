@@ -1,0 +1,113 @@
+1.
+SELECT s.*, m.major_name
+from students s
+join majors m on s.major_id = m.major_id;
+
+2.
+SELECT p.professor_name, d.department_name
+from professors p
+join departments d on p.department_id = d.department_id;
+
+3. 
+SELECT c.course_name, d.department_name
+from courses c
+join departments d on c.department_id = d.department_id;
+
+
+-------------------
+
+1.
+SELECT *
+from students s 
+join enrollments e on e.student_id = s.student_id and e.course_id = 1001; 
+
+2.
+SELECT * 
+from professors p
+join department_head d on d.professor_id = p.professor_id;
+
+3.
+SELECT * 
+from courses c
+join departments d on d.department_id = c.department_id and d.department_name ilike 'Physics'; 
+
+4. <U can send PR>
+
+5.
+SELECT d.department_id, COUNT(m.major_id)
+from departments d 
+join majors m on m.department_id = d.department_id
+GROUP BY d.department_id;
+
+------------------------
+
+1.
+SELECT s.student_name, d.department_name, p.professor_name
+from students s
+join majors m on m.major_id = s.major_id
+join departments d on d.department_id = m.department_id
+join department_head dh on dh.department_id = d.department_id
+join professors p on p.professor_id = dh.professor_id;
+
+2.
+SELECT c.* FROM courses c
+join professors p on c.department_id = p.department_id and p.department_id= 2 ;
+
+3.
+SELECT a.course_id, a.student_count, c.course_name
+FROM 
+( SELECT course_id, COUNT(*) as student_count
+FROM enrollments
+GROUP BY course_id ) AS a
+join courses c on c.course_id = a.course_id;
+
+4.
+
+5. 
+SELECT d.department_id,
+    d.department_name,
+    p.professor_name AS department_head,
+    COUNT(e.student_id) AS total_students
+from departments d
+join department_head dh on dh.department_id = d.department_id
+join professors p on dh.professor_id = p.professor_id
+join courses c on c.department_id = d.department_id
+join enrollments e on c.course_id = e.course_id
+GROUP BY 
+    d.department_id, d.department_name, p.professor_name;
+
+
+------------------------------------
+
+
+1. 
+SELECT s.*, c.course_name
+from students s
+join enrollments e on e.student_id = s.student_id
+join majors m on s.major_id = m.major_id
+join courses c on c.course_id = e.course_id and c.department_id != m.department_id;
+
+2.
+
+
+3.
+SELECT c.course_name, COUNT(*)
+from courses c
+join enrollments e on c.course_id = e.course_id
+GROUP BY c.course_id
+HAVING COUNT(*) > 2;
+
+4.
+SELECT * 
+from enrollments e1
+join enrollments e2 on e1.course_id = e2.course_id and e1.student_id < e2.student_id
+join students s1 on e1.student_id = s1.student_id
+join students s2 on e2.student_id = s2.student_id
+where s1.major_id = s2.major_id;
+
+5.
+SELECT d.*
+from departments d
+join courses c on c.department_id = d.department_id
+left join enrollments e on e.course_id = c.course_id
+where e.enrollment_id IS NULL;

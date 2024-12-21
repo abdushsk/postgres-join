@@ -1,0 +1,25 @@
+Basic Queries
+1. List all students with their major names.
+2. Retrieve the names of all professors along with the departments they belong to.
+3. Get the list of all courses along with the department names they are associated with.
+
+Intermediate Queries
+1. Find all students enrolled in a specific course (e.g., "Introduction to Programming").
+2. Get the professor name who is the head of the Computer Science department.
+3. List all courses offered by the Physics department.
+4. Retrieve the students who scored an A grade in any course.
+5. Find the department name and the total number of majors under each department.
+
+Advanced Queries
+1. List all students along with their department names and the name of the department head.
+2. Retrieve the course names taught by professors in the Mathematics department.
+3. Find the total number of students enrolled in each course, grouped by course.
+4. Get the average grade of students for each course.
+5. List the department heads along with the total number of students in their departments.
+
+Challenging Queries
+1. Find all students who are taking courses outside their own department.
+2. Identify departments that have more than two majors.
+3. Retrieve the course name and student count for courses with at least 2 enrolled students.
+4. Find all students who share the same major and are enrolled in at least one common course.
+5. Get a list of departments that have no students enrolled in any of their courses.
